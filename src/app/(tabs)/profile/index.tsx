@@ -4,7 +4,7 @@ import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { profileStyles } from "@/styles/profileStyles";
 
-function TabTwoScreen() {
+function ProfileTabScreen() {
   const { t: trnslt } = useTranslation("ProfilePage");
   console.log(trnslt("title"));
   return (
@@ -19,4 +19,4 @@ function TabTwoScreen() {
     </View>
   );
 }
-export default TabTwoScreen;
+export default ProfileTabScreen;

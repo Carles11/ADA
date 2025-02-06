@@ -3,7 +3,7 @@ import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { dictionaryStyles } from "@/styles/indexStyles";
 
-function TabOneScreen() {
+function DictionaryTabScreen() {
   const { t: trnslt } = useTranslation("DictionaryPage");
 
   return (
@@ -19,4 +19,4 @@ function TabOneScreen() {
   );
 }
 
-export default TabOneScreen;
+export default DictionaryTabScreen;
