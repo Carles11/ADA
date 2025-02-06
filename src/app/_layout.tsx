@@ -9,6 +9,9 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
+import React from "react";
+import { I18nextProvider } from "react-i18next";
+import i18n from "@/i18n";
 
 import { useColorScheme } from "@/components/useColorScheme";
 
@@ -25,7 +28,9 @@ export const unstable_settings = {
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+import { ReactNode } from "react";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   const [loaded, error] = useFonts({
     SpaceMono: require("../../assets/fonts/SpaceMono-Regular.ttf"),
     ...FontAwesome.font,
@@ -46,7 +51,12 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
+  return (
+    <I18nextProvider i18n={i18n}>
+      {children}
+      <RootLayoutNav />
+    </I18nextProvider>
+  );
 }
 
 function RootLayoutNav() {
@@ -56,7 +66,7 @@ function RootLayoutNav() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+        <Stack.Screen name="modal/index" options={{ presentation: "modal" }} />
       </Stack>
     </ThemeProvider>
   );
