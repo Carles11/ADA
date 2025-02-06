@@ -51,23 +51,24 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return null;
   }
 
-  return (
-    <I18nextProvider i18n={i18n}>
-      {children}
-      <RootLayoutNav />
-    </I18nextProvider>
-  );
+  return <RootLayoutNav>{children}</RootLayoutNav>;
 }
 
-function RootLayoutNav() {
+function RootLayoutNav({ children }: { children: ReactNode }) {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal/index" options={{ presentation: "modal" }} />
-      </Stack>
-    </ThemeProvider>
+    <I18nextProvider i18n={i18n}>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="modal/index"
+            options={{ presentation: "modal" }}
+          />
+        </Stack>
+        {children}
+      </ThemeProvider>
+    </I18nextProvider>
   );
 }

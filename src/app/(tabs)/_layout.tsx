@@ -2,6 +2,7 @@ import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
 import { Pressable } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
@@ -17,6 +18,8 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const { t: trnsltD } = useTranslation("DictionaryPage");
+  const { t: trnsltP } = useTranslation("ProfilePage");
 
   return (
     <Tabs
@@ -30,7 +33,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index/index"
         options={{
-          title: "Wörterbuch",
+          title: trnsltD("title"),
           tabBarIcon: ({ color }) => <TabBarIcon name="book" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
@@ -51,7 +54,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile/index"
         options={{
-          title: "Profil",
+          title: trnsltP("title"),
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="user-circle" color={color} />
           ),
